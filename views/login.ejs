@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="surya">
+  <title>login</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<body class="container p-3 mb-2 text-dark">
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height:600px" >
+          
+          
+            <div class="row justify-content-center align-items-center">
+                <h2>Project Management System</h2>
+          
+              <div class="col-md-8">
+                  
+                <div class="login-box col-md-12">
+                  <form class="form" action="/login" method="POST">
+              
+                    <div class="form-group">
+        
+                      <input type="text" name="email" id="email" class="form-control" placeholder="email" value="surya@gmail.com">
+                    </div>
+                    <div class="form-group">
+                      
+                      <input type="password" name="password" id="password" class="form-control" placeholder="password" value="12345">
+                    </div>
+                    <div class="form-group">
+                      <label for="remember-me" > <span></span><input id="remember-me"
+                            name="remember-me" type="checkbox"></span><span> Remember me</span></label><br>
+                      <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    </div>
+                  
+                  </form>
+                  <% if(loginMessage.length > 0){ %>
+                    <div class="alert alert-danger text-center" role="alert">
+                      <%= loginMessage %>
+                    </div>
+                    <% } %>
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </div>
+</body>
+
+</html>

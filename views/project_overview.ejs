@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PMS</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <link rel='stylesheet' href='/stylesheets/project_detail_page.css' />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="/projects">Project Management System </a>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="/projects">Projects <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">Profile</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a class="text-light nav-link active" href="/profile">Admin</a>
+
+        <a class="btn btn-primary" href="/logout" role="button">Sign out</a>
+      </form>
+    </div>
+  </nav>
+
+
+
+  <!-- Sidebar -->
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-ligth sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+
+            <hr class="my-2 bg-dark">
+            <li class="nav-item">
+              <a class="nav-link active" href="project_overview">
+                <span data-feather="home"></span>
+                Overview <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn-outline-light" href="project_activity">
+                <span data-feather="file"></span>
+                Activity
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn-outline-light" href="project_member">
+                <span data-feather="users"></span>
+                Member
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn-outline-light" href="project_issues">
+                <span data-feather="help-circle"></span>
+                Issues
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- /#sidebar-wrapper -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1><strong>Overview</strong></h1>
+        </div>
+        <h3><strong>PROJECT NAME : <%- project.name %></strong></h3>
+        <div class="card">
+          <div class="card-body">
+            <strong>Issue Tracking</strong>
+            <ul>
+              <li>Bug</li>
+              <li>Feature</li>
+              <li>Support</li>
+            </ul>
+          </div>
+        </div>
+        <br>
+        <div class="card">
+          <div class="card-body">
+            <strong>Members</strong>
+            <ul>
+              <%for(i=0;i<members.length;i++){%>
+              <li><%=members[i].fullname%></li>
+              <%}%>
+                </ul>
+            </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
