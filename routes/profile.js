@@ -12,7 +12,7 @@ module.exports = function (pool) {
                 console.error(err);
                 res.send(err);
             }
-            res.render('profile', {
+            res.render('profile/view', {
                 data: data.rows[0]
                 // role: data.rows[0].role
             })

@@ -1,0 +1,32 @@
+<nav class="col-md-2 d-none d-md-block bg-ligth sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+
+            <hr class="my-2 bg-dark">
+            <li class="nav-item">
+              <a class="nav-link<%= identity == "overview" ? " active" : " btn-outline-light" %>" href="/projects/overview/<%= projectid %>">
+                <span data-feather="home"></span>
+                Overview 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link<%= identity == "activity" ? " active" : " btn-outline-light" %>" href="/projects/activity/<%= projectid %>">
+                <span data-feather="file"></span>
+                Activity
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link<%= identity == "members" ? " active" : " btn-outline-light" %>" href="/projects/members/<%= projectid %>">
+                <span data-feather="users"></span>
+                Member
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link<%= identity == "issues" ? " active" : " btn-outline-light" %>" href="/projects/issues/<%= projectid %>">
+                <span data-feather="help-circle"></span>
+                Issues
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>

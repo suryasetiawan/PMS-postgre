@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+
+
+  <!-- Sidebar -->
+  <div class="container-fluid">
+    <div class="row">
+        <% include ../partials/sidemenu %>
+
+      <!-- /#sidebar-wrapper -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1><strong>Overview</strong></h1>
+        </div>
+        <h3><strong>PROJECT NAME : <%- project.name %></strong></h3>
+        <div class="card">
+          <div class="card-body">
+            <strong>Issue Tracking</strong>
+            <ul>
+              <li>Bug</li>
+              <li>Feature</li>
+              <li>Support</li>
+            </ul>
+          </div>
+        </div>
+        <br>
+        <div class="card">
+          <div class="card-body">
+            <strong>Members</strong>
+            <ul>
+              <%for(i=0;i<members.length;i++){%>
+              <li><%=members[i].fullname%></li>
+              <%}%>
+                </ul>
+            </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

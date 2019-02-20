@@ -127,7 +127,7 @@
             <% data.forEach((item)=>{ %>
             <tr>
                 <td class="<%= columnOne ? '' : 'd-none' %>"><a class="p-3 mb-2 bg-light text-dark font-weight-bold"
-                        href="/projects/<%= item.projectid %>/project_overview"><%= item.projectid %></a></td>
+                        href="/projects/overview/<%= item.projectid %>"><%= item.projectid %></a></td>
                 <td class="<%= columnTwo ? '' : 'd-none' %>"> <%=item.name%></td>
                 <td class="<%= columnThree ? '' : 'd-none' %>"><%=item.members.join(", ")%></td>
                 <td>

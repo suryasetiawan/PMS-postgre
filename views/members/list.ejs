@@ -38,38 +38,7 @@
   <!-- Sidebar -->
   <div class="container-fluid">
     <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-ligth sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-
-            <hr class="my-2 bg-dark">
-            <li class="nav-item">
-              <a class="nav-link btn-outline-light " href="/projects/<%= params%>/project_overview">
-                <span data-feather="home"></span>
-                Overview <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn-outline-light" href="/projects/<%= params%>/project_activity">
-                <span data-feather="file"></span>
-                Activity
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="project_member">
-                <span data-feather="users"></span>
-                Member
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn-outline-light" href="/projects/<%= params%>/project_issues">
-                <span data-feather="help-circle"></span>
-                Issues
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+        <% include ../partials/sidemenu %>
 
       <!-- ====================================FILTER===================================== -->
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
@@ -85,7 +54,7 @@
               <div class=" custom-control custom-checkbox mr-sm-2">
                 <input class="custom-control-input" id="customControlAutosizing7" type="checkbox" name="checkid"
                   value="true" <%=query.checkid ? ' checked' : '' ; %>><label class="custom-control-label "
-                  for="customControlAutosizing7"> ID</label>
+                  for="customControlAutosizing7"> ID Member</label>
               </div>
             </div>
 
@@ -128,14 +97,14 @@
                 <option <%= query.position == item.position ? ' selected' : '' ; %></option><%= `${item.position}` %>
                   </option> <% }); %> </select> </div> </div> <button type="submit" class="btn btn-outline-primary">
                   Search</button>
-                  <a href="/projects/<%= params%>/project_member" class="btn btn-outline-warning">reset</a>
+                  <a href="/projects/<%= projectid %>/project_member" class="btn btn-outline-warning">reset</a>
 
         </form>
         <br><br>
 
         <!-- ====================================OPTION===================================== -->
         <h2>Option</h2>
-        <form action="/projects/<%= params%>/project_member/option" method="POST">
+        <form action="/projects/members/<%= projectid %>/option" method="POST">
           <div class="form-group row">
             <div class="col-sm-2">Column</div>
             <div class="col-sm-10">
@@ -185,7 +154,7 @@
           <thead>
             <tr>
 
-              <th scope="col" class="<%= columnOne ? '' : 'd-none' %> "> <a class="p-3 mb-2  text-ligth">ID</a> </th>
+              <th scope="col" class="<%= columnOne ? '' : 'd-none' %> "> <a class="p-3 mb-2  text-ligth">ID Member</a> </th>
               <th scope="col" class="<%= columnTwo ? '' : 'd-none' %>">Nama</th>
               <th scope="col" class="<%= columnThree ? '' : 'd-none' %>">Position</th>
               <th scope="col">Actions</th>
@@ -195,13 +164,13 @@
             <% data.forEach((item)=>{ %>
             <tr>
               <td class="<%= columnOne ? '' : 'd-none' %>"><a class="p-3 mb-2 bg-light text-dark font-weight-bold"
-                  href="/projects/<%= item.projectid %>/project_overview"><%= item.userid %></a></td>
+                  ><%= item.id %></a></td>
               <td class="<%= columnTwo ? '' : 'd-none' %>"> <%=item.fullname%></td>
-              <td class="<%= columnThree ? '' : 'd-none' %>"><%=item.position%></td>
+              <td class="<%= columnThree ? '' : 'd-none' %>"><%=item.role%></td>
               <td>
-                <a href="/projects/edit/<%= item.projectid %>" class="btn btn-outline-success">edit</a>
-                <a href="/projects/delete/<%= item.projectid %>" class="btn btn-outline-danger"
-                  onclick="return confirm('Yakin mau delete project : <%= item.name%>')">delete</a>
+                <a href="/projects/members/<%= projectid %>/edit/<%= item.id %>" class="btn btn-outline-success">edit</a>
+                <a href="/projects/members/<%= projectid %>/delete/<%= item.id %>" class="btn btn-outline-danger"
+                  onclick="return confirm('Yakin mau delete ID : <%= item.userid%>')">delete</a>
               </td>
             </tr>
             <% }) %>
@@ -243,7 +212,7 @@
             <% } %>
           </ul>
         </nav>
-        <a class="btn btn-outline-primary" href="/projects/<%= params%>/project_member/add" role="button">Add</a>
+        <a class="btn btn-outline-primary" href="/projects/members/<%= projectid %>/add" role="button">Add</a>
 
 
     </div>
