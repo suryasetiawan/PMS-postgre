@@ -1,48 +1,9 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>PMS</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-    <link rel='stylesheet' href='/stylesheets/project_detail_page.css' />
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="/projects">Project Management System </a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/projects">Projects <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile">Profile</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <a class="text-light nav-link active" href="/profile">Admin</a>
-
-                <a class="btn btn-primary" href="/logout" role="button">Sign out</a>
-            </form>
-        </div>
-    </nav>
-
-
+<% include ../partials/header %>
 
     <!-- Sidebar -->
     <div class="container-fluid">
         <div class="row">
                 <% include ../partials/sidemenu %>
-
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                 
@@ -56,13 +17,13 @@
                         <div class="col-sm-2 col-auto my-1">
                             <div class=" custom-control custom-checkbox mr-sm-2">
                                 <input class="custom-control-input" id="customControlAutosizing1" type="checkbox"
-                                    name="checkid" value="true"><label class="custom-control-label "
+                                    name="checkid" value="true" <%=query.checkid ? ' checked' : '' ; %>><label class="custom-control-label "
                                     for="customControlAutosizing1"> ID</label>
                             </div>
                         </div>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control form-control-sm" placeholder="ID" name="id" value="">
+                            <input type="text" class="form-control form-control-sm" placeholder="ID" name="issuesid" value="<%= query.issuesid %>">
                         </div>
                     </div>
 
@@ -70,14 +31,14 @@
                         <div class="col-sm-2 col-auto my-1">
                             <div class=" custom-control custom-checkbox mr-sm-2">
                                 <input class="custom-control-input" id="customControlAutosizing2" type="checkbox"
-                                    name="checkmember" value="true"><label class="custom-control-label "
-                                    for="customControlAutosizing2"> Name</label>
+                                    name="checksubject" value="true"<%=query.checksubject ? ' checked' : '' ; %>><label class="custom-control-label "
+                                    for="customControlAutosizing2"> Subject</label>
                             </div>
                         </div>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control form-control-sm" placeholder="Name" name="name"
-                                value="">
+                            <input type="text" class="form-control form-control-sm" placeholder="Subject" name="subject"
+                                value="<%= query.subject %>">
                         </div>
                     </div>
 
@@ -85,37 +46,39 @@
                         <div class="col-sm-2 col-auto my-1">
                             <div class=" custom-control custom-checkbox mr-sm-2">
                                 <input class="custom-control-input" id="customControlAutosizing3" type="checkbox"
-                                    name="checkposition" value="true"><label class="custom-control-label "
-                                    for="customControlAutosizing3"> Positon</label>
+                                    name="checktracker" value="true" <%=query.checktracker ? ' checked' : '' ;
+                                    %>><label class="custom-control-label "
+                                    for="customControlAutosizing3"> Tracker</label>
 
                             </div>
                         </div>
 
                         <div class="col-sm-10">
-                            <select class="custom-select" name="member" required>
-                                <option>Choose the position...</option>
-
-                                <option></option>
-                                </option>
+                            <select class="custom-select" name="tracker" required>
+                                <option>Choose the tracker...</option>
+                                <% data.forEach((item)=>{ %>
+                                <option <%= query.tracker == item.tracker ? ' selected' : '' ; %></option><%= `${item.tracker}` %>
+                                </option><% }); %>
                             </select>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-outline-primary">
                         Search</button>
-                    <a href="/projects" class="btn btn-outline-warning">reset</a>
+                    <a href="/projects/issues/<%= projectid %>" class="btn btn-outline-warning">reset</a>
 
                 </form>
                 <br><br>
 
                 <!-- ====================================OPTION===================================== -->
                 <h2>Option</h2>
-                <form action="/projects/:id/project_member/option" method="POST">
+                <form action="/projects/issues/<%= projectid %>/option" method="POST">
                     <div class="form-group row">
                         <div class="col-sm-2">Column</div>
                         <div class="col-sm-10">
                             <div class=" custom-control custom-checkbox mr-sm-2">
                                 <input class="custom-control-input" id="customControlAutosizing4" type="checkbox"
-                                    name="cid">
+                                    name="id" <%= columnOne ?
+                                    ' checked' : '' %>>
                                 <label class="custom-control-label " for="customControlAutosizing4">
                                     ID
                                 </label>
@@ -128,9 +91,10 @@
                         <div class="col-sm-10">
                             <div class=" custom-control custom-checkbox mr-sm-2">
                                 <input class="custom-control-input" id="customControlAutosizing5" type="checkbox"
-                                    name="cname" value="true">
+                                    name="subject" value="true" <%= columnTwo
+                                    ? ' checked' : '' %>>
                                 <label class="custom-control-label " for="customControlAutosizing5">
-                                    Name
+                                    Subject
                                 </label>
                             </div>
                         </div>
@@ -141,9 +105,10 @@
                         <div class="col-sm-10">
                             <div class=" custom-control custom-checkbox mr-sm-2">
                                 <input class="custom-control-input" id="customControlAutosizing6" type="checkbox"
-                                    name="cmember" value="true">
+                                    name="tracker" value="true" <%= columnThree
+                                    ? ' checked' : '' %>>
                                 <label class="custom-control-label " for="customControlAutosizing6">
-                                    Position
+                                    Tracker
                                 </label>
                             </div>
                         </div>
@@ -157,28 +122,64 @@
                     <thead>
                         <tr>
 
-                            <th scope="col" class=" "> <a class="p-3 mb-2  text-ligth">ID</a> </th>
-                            <th scope="col" class="">Nama</th>
-                            <th scope="col" class="">Position</th>
+                            <th scope="col" class="<%= columnOne ? '' : 'd-none' %> "> <a class="p-3 mb-2  text-ligth">ID</a> </th>
+                            <th scope="col" class="<%= columnTwo ? '' : 'd-none' %>">Subject</th>
+                            <th scope="col" class="<%= columnThree ? '' : 'd-none' %>">Tracker</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                            <% data.forEach((item)=>{ %>
                         <tr>
-                            <td class=""><a class="p-3 mb-2 bg-light text-dark font-weight-bold"
-                                    href="/projects//project_overview"></a></td>
-                            <td class=""> </td>
-                            <td class=""></td>
+                            <td class="<%= columnOne ? '' : 'd-none' %>"><a class="p-3 mb-2 bg-light text-dark font-weight-bold"
+                                    href="#"><%= item.issuesid %></a></td>
+                            <td class="<%= columnTwo ? '' : 'd-none' %>"><%=item.subject%> </td>
+                            <td class="<%= columnThree ? '' : 'd-none' %>"><%=item.tracker%></td>
                             <td>
-                                <a href="/projects/edit/" class="btn btn-outline-success">edit</a>
-                                <a href="/projects/delete/" class="btn btn-outline-danger"
+                                <a href="/projects/issues/<%= projectid %>/edit/<%= item.issuesid %>" class="btn btn-outline-success">edit</a>
+                                <a href="/projects/issues/<%= projectid %>/delete/<%= item.issuesid %>" class="btn btn-outline-danger"
                                     onclick="return confirm('Yakin mau delete project : ')">delete</a>
                             </td>
                         </tr>
-
+                        <% }) %>
                     </tbody>
                 </table>
+
+                <!-- ====================================PAGINATION===================================== -->
+        <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <% if(pagination.page > 1){ %>
+                  <li class="page-item">
+                    <a class="page-link"
+                      href="/projects<%= pagination.url.replace(`page=${pagination.page}`, `page=${parseInt(pagination.page)-1}`) %>"
+                      aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+      
+                    </a>
+                  </li>
+                  <% } %>
+      
+                  <% for(let i=1; i <= pagination.pages; i++) { %>
+                  <li class="page-item<%= pagination.page == i ? ' active' : '' %>">
+                    <a class="page-link"
+                      href="/projects<%= pagination.url.replace(`page=${pagination.page}`, `page=${i}`) %>">
+                      <%= i %>
+                    </a>
+                  </li>
+                  <% } %>
+      
+                  <% if(pagination.page < pagination.pages-1) { %>
+                  <li class="page-item">
+                    <a class="page-link"
+                      href="/projects<%= pagination.url.replace(`page=${pagination.page}`, `page=${parseInt(pagination.page)+1}`) %>"
+                      aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+      
+                    </a>
+                  </li>
+                  <% } %>
+                </ul>
+              </nav>
                 <a class="btn btn-outline-primary" href="/projects/issues/<%= projectid %>/add" role="button">Add</a>
                 <br><br>
 

@@ -1,0 +1,301 @@
+<% include ../partials/header %>
+
+<!-- Sidebar -->
+<div class="container-fluid">
+    <div class="row">
+        <% include ../partials/sidemenu %>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1><strong>Edit Issues</strong></h1>
+
+            </div>
+
+            <!-- CONTENT -->
+            <div class="card">
+                <div class="card-body">
+                    <form class="" action="" method="POST" enctype="multipart/form-data">
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="form-group row">
+                                    <label for="author" class="col-sm-2 col-form-label">Project Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="projectname" id="projectname"
+                                            value="<%= project.name %>" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="targetversion" class="col-sm-2 col-form-label">Author</label>
+                                    <div class="col-10">
+                                        <input type="text" class="form-control" name="author" id="author"
+                                            value=" <%= dataAuthor.fullname %>" readonly>
+                                    </div>
+                                </div>
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">Tracker</legend>
+                                        <div class="col-sm-10">
+                                            <div class="radio">
+                                                <label><input type="radio" name="tracker" id="tracker" value="Bug"
+                                                        <%= dataissues.tracker == 'Bug' ? 'checked' : '' %>> Bug</label>
+                                            </div>
+                                            <div class="radio">
+                                                <label><input type="radio" name="tracker" id="tracker" value="Feature"
+                                                        <%= dataissues.tracker == 'Feature' ? 'checked' : '' %>>
+                                                    Feature</label>
+                                            </div>
+                                            <div class="radio">
+                                                <label><input type="radio" name="tracker" id="tracker" value="Support"
+                                                        <%= dataissues.tracker == 'Support' ? 'checked' : '' %>>
+                                                    Support</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Subject</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="subject" name="subject"
+                                            value="<%= dataissues.subject %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="" name="description"
+                                            required><%= dataissues.description %></textarea>
+                                    </div>
+                                </div>
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">Status</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios1" value="New"
+                                                    <%= dataissues.status == 'New' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    New
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios2" value="In Progress"
+                                                    <%= dataissues.status == 'In Progress' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    In Progress
+                                                </label>
+                                            </div>
+                                            <div class="form-check disabled">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios3" value="Resolved"
+                                                    <%= dataissues.status == 'Resolved' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios3">
+                                                    Resolved
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios2" value="Feedback"
+                                                    <%= dataissues.status == 'Feedback' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    Feedback
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios2" value="Closed"
+                                                    <%= dataissues.status == 'Closed' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    Closed
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios2" value="Rejected"
+                                                    <%= dataissues.status == 'Rejected' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    Rejected
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">Priority</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="priority"
+                                                    id="gridRadios1" value="Normal"
+                                                    <%= dataissues.priority == 'Normal' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    Normal
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="priority"
+                                                    id="gridRadios2" value="High"
+                                                    <%= dataissues.priority == 'High' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    High
+                                                </label>
+                                            </div>
+                                            <div class="form-check disabled">
+                                                <input class="form-check-input" type="radio" name="priority"
+                                                    id="gridRadios3" value="Urgent"
+                                                    <%= dataissues.priority == 'Urgent' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios3">
+                                                    Urgent
+                                                </label>
+                                            </div>
+                                            <div class="form-check disabled">
+                                                <input class="form-check-input" type="radio" name="priority"
+                                                    id="gridRadios3" value="Immediate"
+                                                    <%= dataissues.priority == 'Immediate' ? 'checked' : '' %>>
+                                                <label class="form-check-label" for="gridRadios3">
+                                                    Immediate
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="form-group row">
+                                    <label class="col-2 col-form-label">% done</label>
+
+
+                                    <div class="col-10">
+                                        <select class="custom-select" name="done">
+                                            <option selected>0</option>
+                                            <option value="1">20</option>
+                                            <option value="2">40</option>
+                                            <option value="3">60</option>
+                                            <option value="4">80</option>
+                                            <option value="5">100</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Start Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="startdate" name="startdate"
+                                            value="<%= moment(dataissues.startdate).format("YYYY-MM-DD")%>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Due Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="" name="duedate"
+                                            value="<%= moment(dataissues.duedate).format("YYYY-MM-DD")%>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Estimated Time</label>
+                                    <div class="col-sm-10">
+                                        <input type="integer" class="form-control" id="" name="estimatedtime"
+                                            value="<%=dataissues.estimatedtime %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="spendtime" class="col-sm-2 col-form-label">Spent Time</label>
+                                    <div class="col-10">
+                                        <input type="text" class="form-control" name="spenttime" id="spenttime"
+                                            placeholder="Spent Time">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="targetversion" class="col-sm-2 col-form-label">Target Version</label>
+                                    <div class="col-10">
+                                        <input type="text" class="form-control" name="targetversion" id="targetversion"
+                                            placeholder="Target Version" required>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Parent Task</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="member">
+                                            <option value="">Parent Task</option>
+                                            <% datatask.forEach((item) => { %>
+                                            <option value="<%= item.issueid %>" <%=item.issueid ? ' selected' : '' ; %>
+                                                </option> <%= item.subject %> </option> <% }); %> </select> </div>
+                                                </div> <div class="form-group row">
+                                                <label for="assignee" class="col-sm-2 col-form-label">Assignee</label>
+                                                <div class="col-10">
+                                                    <select id="assignee" name="assignee" class="form-control">
+                                                        <% for(let i=0; i<members.length; i++){ %>
+                                                        <option value="<%=members[i].userid%>"><%=members[i].fullname%>
+                                                        </option>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="from1" class="col-sm-2 col-form-label">Files</label>
+                                        <div class="col-sm-10">
+                                            <input type="file" class="form-control" id="" placeholder="" name="filedoc"
+                                                >
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4">
+                                            <p>Loc : <%= dataissues.files %></p>
+                                            <img class="img-thumbnail" width="200" height="236"
+                                                src="/fileupload/<%=dataissues.files%>">
+                                        </div>
+                                    </div><br>
+
+                                </div>
+                            </div>
+                            <br><br>
+                            <button type="submit" class="btn btn-outline-success">Save</button>
+                            <a href="/projects/Issues/<%= projectid %>" class="btn btn-outline-warning">Cancel</a>
+                            <br><br>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <h4>
+                                    <strong>Oi Bro <%= dataAuthor.fullname %> !</strong> Jangan lupa diisi semua
+                                    columnya ya !!</h4>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                    </form>
+                </div><br><br>
+            </div>
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    </body>
+
+    </html>

@@ -1,248 +1,247 @@
-<!DOCTYPE html>
-<html>
+<% include ../partials/header %>
 
-<head>
-    <title>PMS</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- Sidebar -->
+<div class="container-fluid">
+    <div class="row">
+        <% include ../partials/sidemenu %>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2"><strong>New Issues</strong></h1>
+
+            </div>
+            <!-- CONTENT -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="author" class="col-sm-2 col-form-label">Project Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="projectname" id="projectname"
+                                value="<%= project.name %>" required readonly>
+                        </div>
+                    </div>
+                    <form class="" action="/projects/issues/<%=projectid%>/add" method="POST" enctype="multipart/form-data">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">Tracker</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="tracker" value="Bug">
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    Bug
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="tracker"
+                                                    value="Feature">
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    Feature
+                                                </label>
+                                            </div>
+                                            <div class="form-check disabled">
+                                                <input class="form-check-input" type="radio" name="tracker"
+                                                    id="gridRadios3" value="Support">
+                                                <label class="form-check-label" for="gridRadios3">
+                                                    Support
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Subject</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="subject" name="subject"
+                                            placeholder="Subject" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea type="text-area" class="form-control" id="" name="description"
+                                            placeholder="Description" required></textarea>
+                                    </div>
+                                </div>
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">Status</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios1" value="New" checked>
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    New
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios2" value="In Progress" disabled>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    In Progress
+                                                </label>
+                                            </div>
+                                            <div class="form-check disabled">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios3" value="Resolved" disabled>
+                                                <label class="form-check-label" for="gridRadios3">
+                                                    Resolved
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios2" value="Feedback" disabled>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    Feedback
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios2" value="Closed" disabled>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    Closed
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    id="gridRadios2" value="Rejected" disabled>
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    Rejected
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">Priority</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="priority"
+                                                    id="gridRadios1" value="Normal">
+                                                <label class="form-check-label" for="gridRadios1">
+                                                    Normal
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="priority"
+                                                    id="gridRadios2" value="High">
+                                                <label class="form-check-label" for="gridRadios2">
+                                                    High
+                                                </label>
+                                            </div>
+                                            <div class="form-check disabled">
+                                                <input class="form-check-input" type="radio" name="priority"
+                                                    id="gridRadios3" value="Urgent">
+                                                <label class="form-check-label" for="gridRadios3">
+                                                    Urgent
+                                                </label>
+                                            </div>
+                                            <div class="form-check disabled">
+                                                <input class="form-check-input" type="radio" name="priority"
+                                                    id="gridRadios3" value="Immediate">
+                                                <label class="form-check-label" for="gridRadios3">
+                                                    Immediate
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="form-group row">
+                                    <label for="assignee" class="col-sm-2 col-form-label">Assignee</label>
+                                    <div class="col-10">
+                                        <select id="assignee" name="assignee" class="form-control">
+                                            <% for(let i=0; i<members.length; i++){ %>
+                                            <option value="<%=members[i].userid%>"><%=members[i].fullname%></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Start Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="" name="startdate" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Due Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="" name="duedate" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Estimated Time</label>
+                                    <div class="col-sm-10">
+                                        <input type="integer" class="form-control" id="" name="estimatedtime"
+                                            placeholder="Estimated Time" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                        <label class="col-2 col-form-label">% done</label>
+                                        <div class="col-10">
+                                            <select class="custom-select" name="done" required>
+                                                <option selected>0</option>
+                                                <option value="1">20</option>
+                                                <option value="2">40</option>
+                                                <option value="3">60</option>
+                                                <option value="4">80</option>
+                                                <option value="5">100</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="from1" class="col-sm-2 col-form-label">Files</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="form-control" id="" placeholder="" name="filedoc"
+                                            >
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-outline-success">Save</button>
+                        <a href="/projects/Issues/<%= projectid %>" class="btn btn-outline-warning">Cancel</a>
+                        <br><br>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+
+                                <h4>
+                                        <strong>Oi Bro! </strong>Project <strong><%= project.name %></strong> Jangan lupa diisi
+                                        semua columnya ya !!</h4>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div><br><br>
+            </div>
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    </body>
 
-    <link rel='stylesheet' href='/stylesheets/project_detail_page.css' />
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="/projects">Project Management System </a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/projects">Projects <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/profile">Profile</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                    <a class="text-light nav-link active" href="/profile" >Admin</a>
-              
-                <a class="btn btn-primary" href="/logout" role="button">Sign out</a>
-            </form>
-        </div>
-    </nav>
-
-    <!-- Sidebar -->
-    <div class="container-fluid">
-        <div class="row">
-                <% include ../partials/sidemenu %>
-
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                <div
-                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2"><strong>New Issues</strong></h1>
-                   
-                </div>
-
-                <!-- CONTENT -->
-                <div class="card">
-                    <div class="card-body">
-                        <form action="" method="GET">
-                            <fieldset class="form-group">
-                                <div class="row">
-                                    <legend class="col-form-label col-sm-2 pt-0">Tracker</legend>
-                                    <div class="col-sm-10">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios1">
-                                                Bug
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios2" value="option2">
-                                            <label class="form-check-label" for="gridRadios2">
-                                                Feature
-                                            </label>
-                                        </div>
-                                        <div class="form-check disabled">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios3" value="option3">
-                                            <label class="form-check-label" for="gridRadios3">
-                                                Supports
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <div class="form-group row">
-                                <label for="from1" class="col-sm-2 col-form-label">Subject</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="" placeholder="Subject">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="from1" class="col-sm-2 col-form-label">Description</label>
-                                <div class="col-sm-10">
-                                    <textarea type="text-area" class="form-control" id=""
-                                        placeholder="Description"></textarea>
-                                </div>
-                            </div>
-
-                            <fieldset class="form-group">
-                                <div class="row">
-                                    <legend class="col-form-label col-sm-2 pt-0">Status</legend>
-                                    <div class="col-sm-10">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios1">
-                                                New
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios2" value="option2">
-                                            <label class="form-check-label" for="gridRadios2">
-                                                In Progress
-                                            </label>
-                                        </div>
-                                        <div class="form-check disabled">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios3" value="option3">
-                                            <label class="form-check-label" for="gridRadios3">
-                                                Resolved
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios2" value="option2">
-                                            <label class="form-check-label" for="gridRadios2">
-                                                Feedback
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios2" value="option2">
-                                            <label class="form-check-label" for="gridRadios2">
-                                                Closed
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios2" value="option2">
-                                            <label class="form-check-label" for="gridRadios2">
-                                                Rejected
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <fieldset class="form-group">
-                                <div class="row">
-                                    <legend class="col-form-label col-sm-2 pt-0">Priority</legend>
-                                    <div class="col-sm-10">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="gridRadios1">
-                                                Normal
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios2" value="option2">
-                                            <label class="form-check-label" for="gridRadios2">
-                                                High
-                                            </label>
-                                        </div>
-                                        <div class="form-check disabled">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios3" value="option3">
-                                            <label class="form-check-label" for="gridRadios3">
-                                                Urgent
-                                            </label>
-                                        </div>
-                                        <div class="form-check disabled">
-                                            <input class="form-check-input" type="radio" name="gridRadios"
-                                                id="gridRadios3" value="option3">
-                                            <label class="form-check-label" for="gridRadios3">
-                                                Immediate
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <div class="form-group row">
-                                <label class="col-2 col-form-label"> Assignee</label>
-                                <div class="col-10">
-                                    <select class="custom-select">
-                                        <option selected>Choose the boolean ...</option>
-                                        <option value="1">True</option>
-                                        <option value="2">False</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="from1" class="col-sm-2 col-form-label">Start Date</label>
-                                <div class="col-sm-10">
-                                    <input type="date" class="form-control" id="" placeholder="Start Date">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="from1" class="col-sm-2 col-form-label">Start Date</label>
-                                <div class="col-sm-10">
-                                    <input type="date" class="form-control" id="" placeholder="Due Date">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="from1" class="col-sm-2 col-form-label">Estimated Time</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="" placeholder="Due Date">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-2 col-form-label">% done</label>
-                                <div class="col-10">
-                                    <select class="custom-select">
-                                        <option selected>0</option>
-                                        <option value="1">20</option>
-                                        <option value="2">40</option>
-                                        <option value="2">60</option>
-                                        <option value="2">80</option>
-                                        <option value="2">100</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="from1" class="col-sm-2 col-form-label">Files</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="" placeholder="">
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </form>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <br>
-</body>
-
-</html>
+    </html>

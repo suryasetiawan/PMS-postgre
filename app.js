@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var flash = require('connect-flash');
 var session = require('express-session');
+var fileupload = require('express-fileupload');
 
 const { Pool } = require('pg')
 
@@ -16,19 +17,16 @@ const pool = new Pool({
   port: 5432,
 })
 
-
+var indexRouter = require('./routes/index')(pool);
 var projectsRouter = require('./routes/projects')(pool);
 var profileRouter = require('./routes/profile')(pool);
-var indexRouter = require('./routes/index')(pool);
-
-
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(fileupload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -47,7 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter);
 app.use('/profile', profileRouter);
-
 
 
 // catch 404 and forward to error handler

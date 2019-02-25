@@ -1,40 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>PMS</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
-  <link rel='stylesheet' href='/stylesheets/project_detail_page.css' />
-</head>
-
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="/projects">Project Management System </a>
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="/projects">Projects <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/profile">Profile</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <a class="text-light nav-link active" href="/profile">Admin</a>
-
-        <a class="btn btn-primary" href="/logout" role="button">Sign out</a>
-      </form>
-    </div>
-  </nav>
+<% include ../partials/header %>
 
   <!-- Sidebar -->
   <div class="container-fluid">
@@ -48,20 +12,17 @@
         <div class="card">
           <div class="card-body">
             <strong>Activity</strong>
+            <p>From <%= moment(sevenDaysBefore).format('DD/MM/YYYY') %> to <%= moment(today).format('DD/MM/YYYY') %> </p>
+            <% for (var key in data) { %>
+            <strong><%= data[key].date == moment(today).format('YYYY-MM-DD') ? 'Today' : key %></strong>
             <ul>
-              <li>From 08/16/2017 to 08/20/2017</li>
-              
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <strong>Today</strong>
-            <ul>
-              <li>07:55 Login Feature #145 (New) : Description, author : Surya</li>
-              <li>08:55 Login Feature #146 (New) : Description, author : Setiawan</li>
-              
-            </ul>
+              <% data[key].data.forEach((item)=>{ %>
+              <li>
+                <%= `${moment(item.time).format('HH:mm')} ${item.title} #${item.issuesid} (${item.status}) : ${item.description}, Author : ${item.fullname} ` %>
+              </li>
+            <%})%>
+              </ul>
+            <% } %>
           </div>
         </div>
     </div>
@@ -71,7 +32,7 @@
   <!-- Bootstrap core JavaScript
             ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-
+ 
 </body>
 
 </html>

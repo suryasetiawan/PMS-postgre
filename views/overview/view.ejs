@@ -1,7 +1,5 @@
 <% include ../partials/header %>
 
-
-
   <!-- Sidebar -->
   <div class="container-fluid">
     <div class="row">
@@ -14,16 +12,27 @@
         </div>
         <h3><strong>PROJECT NAME : <%- project.name %></strong></h3>
         <div class="card">
-          <div class="card-body">
-            <strong>Issue Tracking</strong>
-            <ul>
-              <li>Bug</li>
-              <li>Feature</li>
-              <li>Support</li>
-            </ul>
+            <div class="card-body">
+              <strong>Issue Tracking</strong>
+              <ul>
+                <li>Bug:
+                    <%=bug%> Open /
+                    <%=bugOpen%>
+                </li>
+                <li>Feature:
+                  <%=feature%> Open /
+                  <%=featureOpen%>
+                </li>
+                <li>Support:
+                  <%=support%> Open /
+                  <%=supportOpen%>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
         <br>
+
+        
         <div class="card">
           <div class="card-body">
             <strong>Members</strong>

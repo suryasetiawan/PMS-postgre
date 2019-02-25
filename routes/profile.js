@@ -18,8 +18,7 @@ module.exports = function (pool) {
             })
             //console.log(data.rows[0].email);
         })
-    });
-    
+    });   
 
     router.post('/:id', helpers.isLoggedIn, (req, res, next) => {
         // console.log(req.params.id);
