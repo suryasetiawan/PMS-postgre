@@ -132,13 +132,14 @@
                             <% data.forEach((item)=>{ %>
                         <tr>
                             <td class="<%= columnOne ? '' : 'd-none' %>"><a class="p-3 mb-2 bg-light text-dark font-weight-bold"
-                                    href="#"><%= item.issuesid %></a></td>
+                                   ><%= item.issuesid %></a></td>
                             <td class="<%= columnTwo ? '' : 'd-none' %>"><%=item.subject%> </td>
                             <td class="<%= columnThree ? '' : 'd-none' %>"><%=item.tracker%></td>
                             <td>
                                 <a href="/projects/issues/<%= projectid %>/edit/<%= item.issuesid %>" class="btn btn-outline-success">edit</a>
+                                <% if(status == 'admin' ) {%>
                                 <a href="/projects/issues/<%= projectid %>/delete/<%= item.issuesid %>" class="btn btn-outline-danger"
-                                    onclick="return confirm('Yakin mau delete project : ')">delete</a>
+                                    onclick="return confirm('Yakin mau delete subject : <%=item.subject%>')">delete</a><% } %>
                             </td>
                         </tr>
                         <% }) %>

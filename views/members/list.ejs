@@ -134,8 +134,9 @@
               <td class="<%= columnThree ? '' : 'd-none' %>"><%=item.role%></td>
               <td>
                 <a href="/projects/members/<%= projectid %>/edit/<%= item.id %>" class="btn btn-outline-success">edit</a>
+                <% if(status == 'admin' ) {%>
                 <a href="/projects/members/<%= projectid %>/delete/<%= item.id %>" class="btn btn-outline-danger"
-                  onclick="return confirm('Yakin mau delete ID Member : <%= item.id %>')">delete</a>
+                  onclick="return confirm('Yakin mau delete ID Member : <%= item.id %>')">delete</a><% } %>
               </td>
             </tr>
             <% }) %>

@@ -132,8 +132,9 @@
                 <td class="<%= columnThree ? '' : 'd-none' %>"><%=item.members.join(", ")%></td>
                 <td>
                     <a href="/projects/edit/<%= item.projectid %>" class="btn btn-outline-success">edit</a>
+                    <% if(status == 'admin' ) {%>
                     <a href="/projects/delete/<%= item.projectid %>" class="btn btn-outline-danger"
-                        onclick="return confirm('Yakin mau delete project : <%= item.name%>')">delete</a>
+                        onclick="return confirm('Yakin mau delete project : <%= item.name%>')">delete</a> <% } %>
                 </td>
             </tr>
             <% }) %>

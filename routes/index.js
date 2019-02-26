@@ -19,6 +19,7 @@ module.exports = function (pool) {
         res.redirect('/')
       } else {
         req.session.user = data.rows[0].userid
+        req.session.status = data.rows[0].status
         res.redirect('/projects')
       }
     })

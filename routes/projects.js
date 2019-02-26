@@ -16,9 +16,10 @@ module.exports = function (pool) {
         const offset = (page - 1) * limit // rumus offset (titik mulainya)
         let searching = false;
         let params = [];
+        let status = req.session.status
 
         if (req.query.checkid && req.query.id) {
-            params.push(`projects.projectid = ${req.query.id}`);
+            params.push(`projects.projectid = ${req.query.id}`); 
             searching = true;
         }
 
@@ -105,7 +106,8 @@ module.exports = function (pool) {
                                 columnOne,
                                 columnTwo,
                                 columnThree,
-                                user: req.session.user
+                                user: req.session.user,
+                                status,identity: 'issues'
                             })
                         })
                     })
@@ -263,6 +265,7 @@ module.exports = function (pool) {
         const offset = (page - 1) * limit // rumus offset (titik mulainya)
         let searching = false;
         let params = [];
+        let status = req.session.status 
 
         if (req.query.checkid && req.query.id) {
             params.push(`members.id = ${req.query.id}`);
@@ -318,7 +321,8 @@ module.exports = function (pool) {
                         columnOne,
                         columnTwo,
                         columnThree,
-                        user: req.session.user
+                        user: req.session.user,
+                        status
                     })
                 })
             })
@@ -429,6 +433,7 @@ module.exports = function (pool) {
         const offset = (page - 1) * limit
         let searching = false;
         let params = [];
+        let status = req.session.status
 
         if (req.query.checkid && req.query.issuesid) {
             params.push(`issues.issuesid = ${req.query.issuesid}`)
@@ -479,7 +484,8 @@ module.exports = function (pool) {
                             columnOne,
                             columnTwo,
                             columnThree,
-                            user: req.session.user
+                            user: req.session.user,
+                            status
                         })
                     })
             })
@@ -550,13 +556,7 @@ module.exports = function (pool) {
         let file = req.files.filedoc;
         let filename = file.name.toLowerCase().replace('', Date.now());
         let x = req.body;
-
-        let author = `${req.session.user}`
-
-        // let sqLog = `insert into activity (issuesid, time, title, description, author, status) values
-        //              (${issuesid}, current_timestamp, '${x.subject}', '${x.description}', ${author}, '${x.status}')`
-
-
+      
         let sql = `INSERT INTO issues(projectid, tracker, subject, description, status, priority, assignee, startdate, duedate, estimatedtime, done, files, createddate) VALUES (${projectid}, '${tracker}', '${subject}', '${description}', '${status}', '${priority}', ${assignee}, '${startdate}', '${duedate}', ${estimatedtime}, ${done}, '${filename}', current_timestamp)`;
 
         if (req.files) {
@@ -668,7 +668,6 @@ module.exports = function (pool) {
         }
     })
 
-
     //  ================================ PROJECT ISSUES DELETE ================================ //
     router.get('/issues/:projectid/delete/:issuesid', function (req, res, next) {
         let projectid = req.params.projectid
@@ -738,28 +737,6 @@ module.exports = function (pool) {
             })
         })
     })
-
-    //  ================================ PROJECT ACTIVITY ================================ //
-
-    // router.get('/activity/:projectid', helpers.isLoggedIn, function (req, res, next) {
-    //     let projectid = req.params.projectid;
-    //     let author = `${req.session.user}`
-    //     let sql = `select * from activity where projectid = ${projectid}`
-
-
-    //     pool.query(`select userid, email, concat(firstname,' ',lastname) as fullname from users where userid = ${author}`, (err, dataAuthor) => {
-    //         pool.query(sql, (err, data) => {
-    //             res.render('activity/view', {
-    //                 projectid,
-    //                 identity: 'activity',
-    //                 data: data.rows,
-    //                 moment,
-    //                 dataAuthor: dataAuthor.rows[0]
-    //             });
-    //         })
-    //     })
-    // });
-
 
     router.get('/activity/:projectid', helpers.isLoggedIn, function (req, res, next) {
         let projectid = req.params.projectid;

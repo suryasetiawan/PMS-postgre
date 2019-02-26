@@ -13,7 +13,8 @@ module.exports = function (pool) {
                 res.send(err);
             }
             res.render('profile/view', {
-                data: data.rows[0]
+                data: data.rows[0],
+                identity: 'issues'
                 // role: data.rows[0].role
             })
             //console.log(data.rows[0].email);
