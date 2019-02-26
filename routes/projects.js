@@ -24,7 +24,7 @@ module.exports = function (pool) {
         }
 
         if (req.query.checkname && req.query.name) {
-            params.push(`projects.name ilike '%${req.query.name}%'`); //ilike -> mengenal semua bentuk huruf mau besar atau kecil dan % -> untuk mencari perhuruf
+            params.push(`projects.name ilike '%${req.query.name}%'`); //ilike -> mengenal Semua bentuk huruf mau besar atau kecil dan % -> untuk mencari perhuruf
             searching = true;
         }
 
